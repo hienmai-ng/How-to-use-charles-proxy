@@ -4,7 +4,7 @@ How to use charles proxy
 
 Nếu bạn là một mobile developer, mình khá chắc là bạn đã từng gặp qua tình huống éo le vỡ UI ít nhất một lần trong đời. Vỡ UI thường được bắt gặp khi mà bạn có một cái text, nội dung của cái text này được lấy bằng cách truy xuất database, hoặc từ kết quả mà API trả về. Cơ mà bạn lại quên mất việc kiểm tra UI khi nội dung cái text này dài ra trên các màn hình khác nhau, dẫn tới hậu quả UI của bạn banh chè.
 
-Mục đích của bài viết này giúp các bạn làm quen với một tool rất chy là bá đạo, cân từ debugging đến testing.
+Mục đích của bài viết này giúp các bạn làm quen với một tool hỗ trợ debugging đến testing.
 
 Ví dụ nhé, nó giúp bạn có thể test các hiển thị lên UI của nhiều data set khác nhau như thế nào, ngay cả khi bạn chưa implement API. Trong một diễn biến khác, nó có thể giúp bạn debugging cách bạn call API đã đúng chưa: kiểm tra bạn đang gọi GET/POST/..., header ra sao, parameter như nào,... Ngoài ra nó còn cho phép bạn test những trường hợp download mạng chậm nữa.
 
@@ -55,3 +55,23 @@ Và cái tool thần thánh được nhắc đến trong bài viết này chính
 	<img src="./Images/img-register2.png" height="100"/>
 	<img src="./Images/img-register3.png" height="100"/>
 </center>
+
+## Configure Charles And Environment
+
+Phần set up Charles và môi trường là phần vô cùng quan trọng. Nếu bạn set up môi trường không đúng hoặc không đầy đủ, điều tất yếu là bạn sẽ chả thể làm việc được với nó.
+
+Để giúp bạn có thể kiểm tra liệu mình đã set up đúng chưa, thì sau đây là checklist các bước mình sử dụng:
+
+- [x] Config Proxy
+	- [x] Bật macOS Proxy cho Charles
+	- [x] Config proxy cho device
+- [x] Config Configuring SSL Proxying Certificates
+	- [x] Thêm Charles CA Certificate cho máy mac
+	- [x] Bật SSL Proxy cho máy mac và cài đặt SSL cho tất cả host name
+	- [x] Bật trust SSL Certìicate cho device/simulator
+
+### Config Proxy
+
+Proxy là một Internet server làm nhiệm vụ chuyển tiếp thông tin và kiểm soát tạo sự an toàn cho việc truy cập Internet của các máy client. 
+
+Khi sử dụng Charles trên máy Mac, bạn cần config cho Charles sử dụng macOS Proxy.
