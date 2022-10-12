@@ -148,4 +148,4 @@ Như mình đã đề cập, chức năng này được sử dụng để điề
 	<img src="./Images/img-throttlle2.png" height="350">
 </center>
 
-Đọc lại [Hướng dẫn cài đặt Charles](./README.md) 🔧
+ * Đọc lại [Hướng dẫn cài đặt Charles](./README.md) 🔧
