@@ -246,6 +246,63 @@ __Đối với iOS Simulator__
 	<img src="./Images/img-config-simu3.png" height="500">
 </center>
 
+### Android
+
+* Chạy **Charles**
+* Lấy **IP address**
+* Đảm bảo điện thoai và mấy tính cùng mạng
+* Ở điện thoại **Android** 
+    * Go to **Settings** -> **Wi-Fi** ->  click vào **network**  -> **Modify network** -> **Advanced options** -> **Proxy** -> **Manual**
+        * **Proxy hostname** = **IP address**
+        * **Proxy port** = **8888**
+        
+        <img src="https://github.com/thyrlian/Charles-Proxy-Mobile-Guide/blob/master/Screenshots/Android/Wi-Fi.png" width="256">
+    
+    * Chạy **Browser**, visit https://chls.pro/ssl, lưu certificate
+    
+    <img src="https://github.com/thyrlian/Charles-Proxy-Mobile-Guide/blob/master/Screenshots/Android/certificate.png" width="256">
+    
+    * Hệ thống sẽ yêu cầu bạn đặt màn hình khóa ** PIN ** hoặc ** Password **, chỉ cần đặt một cái và lưu nó
+     * Bây giờ chứng chỉ đã được cài đặt
+     * Mở ứng dụng và theo dõi lưu lượng trên Charles
+* Một hộp thoại bật lên trên máy tính hỏi "A connection attempt to  Charles has been made from the host ...", chỉ cần nhấp vào nút ** Allow **
+
+#### Android N (7.0, API level 24) and afterwards
+
+* Mở  Android project trên Android Studio
+* **Android Studio** -> **File** -> **New** -> **Android resource directory**
+    * **Directory name** = **xml**
+    * **Directory type** = **xml**
+    * **Source set** = **debug**
+* **Android Studio** -> **File** -> **New** -> **XML resource file**
+    * **File name** = **network_security_config**
+    * **Root element** = **network-security-config**
+* Bước trên sẽ tạo một tệp XML với phần tử gốc đã cho. Bây giờ hãy dán nội dung bên dưới để thay thế nội dung hiện có trong tệp XML đã tạo.
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <network-security-config xmlns:android="http://schemas.android.com/apk/res/android">
+        <debug-overrides>
+            <trust-anchors>
+                <!-- Trust user added CAs while debuggable only -->
+                <certificates src="user" />
+            </trust-anchors>
+        </debug-overrides>
+    </network-security-config>
+    ```
+* Sau đó, đi tới ** debug ** source set, tạo một tệp ** AndroidManifest.xml ** trống nếu bạn không có tệp này cho biến thể xây dựng gỡ lỗi và thêm nội dung như bên dưới (cuối cùng hợp nhất tệp kê khai sẽ hợp nhất tệp đó với bản kê khai chính). Khi bạn đã có, chỉ cần thêm thuộc tính `networkSecurityConfig` trong` ứng dụng`.
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    
+        <application
+            android:networkSecurityConfig="@xml/network_security_config">
+        </application>
+    
+    </manifest>
+    ```
+
 Nhắc lại checklist lần nữa để các bạn không quên:
 
 - [x] Config Proxy
